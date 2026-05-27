@@ -45,14 +45,48 @@
         .btn:hover {
             background-color: #3582b8;
         }
+
+        /* ジャケット写真をスマホに最適化するスタイル */
+        .jacket {
+            width: 100%;
+            max-width: 300px; /* スマホでちょうどいいサイズ */
+            height: auto;
+            border-radius: 8px; /* 角をちょっと丸くして今っぽく */
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15); /* 影をつけて立体感をデプロイ */
+            margin: 20px 0;
+        }
+
+        /* プレイヤー全体の囲み */
+        .player-container {
+            background-color: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* オーディオプレイヤーの幅を100%にしてスマホにフィット */
+        .audio-player {
+            width: 100%;
+            margin-top: 5px;
+        }        
     </style>
+    
 </head>
 <body>
     <div class="container">
         <h1>nine balls/Surplustar</h1>
         <h2>閲覧ありがとうございます。</h2>
         <h2>以下から曲を聴いてください！</h2>
-        <p>Track List</p>
+        
+        <img src="DEMO_ジャケット_20260524.jpg" alt="Surplustar Jacket" class="jacket">
+
+        <div class="player-container">
+            <p style="font-weight: bold; margin-bottom: 5px;">Track List</p>
+            <audio controls src="真象生命_Ver1227.mp3" class="audio-player">
+                お使いのブラウザはオーディオ再生に対応していません。
+            </audio>
+        </div>
         <p>
             1.inst<br>
             2.張りぼてのアルメリア<br>
