@@ -120,6 +120,17 @@
         function closeLyrics() {
             document.getElementById('lyricsModal').style.display = 'none';
         }
+
+    // ★背景をクリックした時に閉じるための処理
+    // モーダル全体（背景）を取得
+    const modal = document.getElementById('lyricsModal');
+    // 画面のどこをクリックしたか監視する
+    window.onclick = function(event) {
+        // もしクリックした場所が「モーダルの背景部分」だったら
+        if (event.target == modal) {
+            closeLyrics();
+        }
+    }
     </script>
 
     <!-- 歌詞のデータ置き場（表示はされない） -->
