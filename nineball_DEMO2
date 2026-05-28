@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surplustar DEMO Album 「nine ball」特設サイト</title>
+ 
+    <style>
+        /* 既存のスタイル */
+        body { background-color: #f0f8ff; color: #333; font-family: 'Helvetica Neue', Arial, sans-serif; text-align: center; padding: 40px 20px; margin: 0; }
+        .container { max-width: 500px; margin: 0 auto; background: #ffffff; padding: 30px 20px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); position: relative; }
+        h1 { color: #4ba3e3; font-size: 1.8rem; margin-bottom: 5px; letter-spacing: 0.5px; }
+        h2 { font-size: 1.1rem; color: #666; margin: 5px 0; font-weight: normal; }
+        .jacket { width: 100%; max-width: 280px; height: auto; border-radius: 12px; box-shadow: 0 12px 28px rgba(75, 163, 227, 0.15); margin: 20px 0; }
+        
+        .track-list { text-align: left; margin: 25px 0; background: #fdfdfd; border-radius: 12px; border: 1px solid #eef4f8; padding: 10px; }
+        .track-item { padding: 12px 10px; border-bottom: 1px solid #f0f6fa; }
+        .track-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .track-title { font-size: 0.95rem; font-weight: bold; color: #444; }
+        .audio-player { width: 100%; height: 32px; outline: none; margin-top: 5px; }
+
+        /* 追加：歌詞ボタンのスタイル */
+        .lyrics-btn { font-size: 0.75rem; background: #eef4f8; color: #4ba3e3; border: none; padding: 4px 10px; border-radius: 15px; cursor: pointer; transition: 0.3s; }
+        .lyrics-btn:hover { background: #4ba3e3; color: white; }
+
+        /* 追加：モーダル（ポップアップ）のスタイル */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
+        .modal-content { background: white; width: 90%; max-width: 400px; padding: 20px; border-radius: 16px; position: relative; max-height: 80vh; overflow-y: auto; text-align: left; }
+        .close-btn { position: sticky; top: 0; float: right; cursor: pointer; font-size: 1.2rem; color: #aaa; }
+        .modal-lyrics { white-space: pre-wrap; line-height: 1.8; color: #555; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Surplustar DEMO Album<br>「nine ball」特設サイト</h1>
+        <img src="DEMO_ジャケット_20260524.jpg" alt="Surplustar Jacket" class="jacket">
+
+        <div class="track-list">
+            <!-- 1曲目 -->
+            <div class="track-item">
+                <div class="track-header">
+                    <div class="track-title">1.真象生命</div>
+                    <button class="lyrics-btn" onclick="openLyrics('真象生命', 'ここに歌詞を\n書いていくのです\n改行もそのまま反映されます')">歌詞</button>
+                </div>
+                <audio controls src="真象生命_Ver1227.mp3" class="audio-player"></audio>
+            </div>
+            <!-- 2曲目以降も同様に -->
+        </div>
+    </div>
+
+    <!-- モーダル本体 -->
+    <div id="lyricsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeLyrics()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalLyrics" class="modal-lyrics"></div>
+        </div>
+    </div>
+
+    <script>
+        function openLyrics(title, text) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalLyrics').innerText = text;
+            document.getElementById('lyricsModal').style.display = 'flex';
+        }
+        function closeLyrics() {
+            document.getElementById('lyricsModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
