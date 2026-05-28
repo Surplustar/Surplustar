@@ -1,2 +1,103 @@
-<a href="nineball_DEMO.html">CD試聴ページへはこちら</a>
-<a href="nineball_DEMO2.html">CD試聴ページ2へはこちら</a>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surplustar Official</title>
+    <style>
+        /* --- CSS: 突貫工事用スタイル --- */
+        :root {
+            --sonic-blue: #a8d5e2; /* さささんの大好きな色味をイメージ */
+            --border-color: #ccc;
+        }
+
+        body { margin: 0; font-family: sans-serif; color: #333; line-height: 1.6; }
+
+        /* スティッキーヘッダー */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            border-bottom: 2px solid var(--sonic-blue);
+            padding: 15px;
+            z-index: 1000;
+        }
+
+        /* パンくず */
+        .breadcrumb { font-size: 14px; margin-bottom: 10px; color: #666; }
+        .breadcrumb a { text-decoration: none; color: #333; font-weight: bold; }
+
+        /* ナビゲーション全体のコンテナ */
+        .nav-container { display: flex; align-items: flex-start; gap: 40px; }
+
+        /* ロゴエリア */
+        .logo-area { 
+            cursor: pointer; padding: 20px; border: 2px solid var(--sonic-blue); 
+            font-weight: bold; text-align: center; background: #f9f9f9;
+        }
+        .logo-area:hover { background: var(--sonic-blue); color: white; }
+
+        /* メニューカラムのレイアウト */
+        .menu-columns { display: flex; gap: 20px; }
+        .col { width: 140px; border: 1px solid var(--border-color); }
+        .col h3 { 
+            margin: 0; padding: 8px; background: #eee; 
+            font-size: 14px; text-transform: uppercase; border-bottom: 1px solid var(--border-color);
+        }
+        .col a { 
+            display: block; padding: 8px; text-decoration: none; 
+            color: #444; border-bottom: 1px solid #eee; font-size: 13px;
+        }
+        .col a:hover { background: #f0f7f9; }
+
+        /* メインコンテンツ（仮） */
+        main { padding: 20px; }
+    </style>
+</head>
+<body>
+
+<header class="sticky-header">
+    <nav class="breadcrumb">
+        <a href="/">🏠 home</a> > <span>official</span>
+    </nav>
+
+    <div class="nav-container">
+        <div class="logo-area" onclick="window.location.reload()" title="クリックで再読み込み">
+            Surplustar<br>(Logo Here)
+        </div>
+
+        <nav class="menu-columns">
+            <div class="col">
+                <h3>about</h3>
+                <a href="#">サプラスタとは？</a>
+            </div>
+            <div class="col" style="background:#fdf2f2;"> <!-- newsは薄い赤系 -->
+                <h3>news</h3>
+                <a href="#">1st EP「Root」発売</a>
+            </div>
+            <div class="col" style="background:#fefef0;"> <!-- SNSは薄い黄色系 -->
+                <h3>SNS</h3>
+                <a href="#">X</a>
+                <a href="#">Instagram</a>
+                <a href="#">Tiktok</a>
+            </div>
+            <div class="col" style="background:#f0f0f0;"> <!-- specialは薄いグレー系 -->
+                <h3>special</h3>
+                <a href="nineball_DEMO.html">Surplustar DEMO<br>Album「nine ball」特設サイト</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <h1>Welcome to Surplustar Official</h1>
+    <p>ここから、あなたの音楽の世界が広がる……。</p>
+    <div style="height: 1500px;">（スクロールテスト：ヘッダーが追従します）</div>
+</main>
+
+<script>
+    // 突貫工事用スクリプト：今のところリロードはonclickでHTMLに直書き済み
+</script>
+
+</body>
+</html>
