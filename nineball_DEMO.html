@@ -30,13 +30,13 @@
         .modal-lyrics { white-space: pre-wrap; line-height: 1.8; color: #555; margin-top: 20px; }
 
         /* ジャケットを回転させるための親コンテナ */
-        .jacket-container {
-        width: 280px; /* サイズは適宜調整してください */
-        height: 280px;
-        margin: 20px auto;
-        perspective: 1000px; /* 3D奥行き感 */
-        cursor: pointer;
-        }
+          .jacket-container {
+            width: 280px;  /* ここでサイズを固定 */
+            height: 280px; /* ここでサイズを固定 */
+            margin: 20px auto;
+            perspective: 1000px;
+            cursor: pointer;
+            }
 
         .jacket-flipper {
         width: 100%;
@@ -66,7 +66,8 @@
         .jacket-img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: cover; /* ★ここが重要！これで画像が引き伸ばされず、綺麗に枠に収まります */
+        object-position: center; /* 画像のどの部分を表示するか（centerなら中央） */
         border-radius: 12px;
         box-shadow: 0 12px 28px rgba(75, 163, 227, 0.15);
         }
