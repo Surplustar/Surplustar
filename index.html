@@ -37,6 +37,14 @@
         }
         .logo-area:hover { background: var(--sonic-blue); color: white; }
 
+        .logo-area img {
+        height: 40px;      /* ここを調整して、ヘッダーに丁度いい高さを探ってください！ */
+        width: auto;       /* 横幅は自動計算！これで比率が崩れません */
+        vertical-align: middle; /* 微妙な隙間を消す魔法の命令 */
+        object-fit: contain;
+        }
+        
+
         /* メニューカラムのレイアウト */
         .menu-columns { display: flex; gap: 20px; }
         .col { width: 140px; border: 1px solid var(--border-color); }
