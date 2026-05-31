@@ -101,12 +101,36 @@
         .control-btn.play-main:hover {
             background: #3a92d2;
             color: #ffffff;
+            
+ /* ーーー 新設：スカイブルーのシークバーエリア ーーー */
+        .progress-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 12px auto 15px auto;
+            max-width: 95%;
         }
+        #seek-bar {
+            flex-grow: 1;
+            accent-color: #4ba3e3; /* スカイブルーのツマミ */
+            cursor: pointer;
+            height: 6px;
+        }
+        .time-display {
+            font-size: 0.75rem;
+            color: #777;
+            font-family: 'Courier New', Courier, monospace; /* 等幅フォントで数字のブレを防ぐ */
+            min-width: 32px;
+        }
+
         .now-playing {
             font-size: 0.85rem;
             color: #777;
             font-weight: bold;
             letter-spacing: 0.5px;
+            border-top: 1px dashed #e2eff7;
+            padding-top: 10px;
         }
         #current-track-title {
             color: #4ba3e3;
@@ -262,30 +286,33 @@
         const playBtn = document.getElementById('play-btn');
         const currentTitleDisplay = document.getElementById('current-track-title');
 
-        // 指定したインデックスの曲を再生する関数
+     // 追記：シークバー用の要素取得
+        const seekBar = document.getElementById('seek-bar');
+        const currentTimeDisplay = document.getElementById('current-time');
+        const durationDisplay = document.getElementById('duration');
+
         function playTrack(index) {
             if (index < 0 || index >= tracks.length) return;
 
-            // 既存のアクティブハイライトをリセット
             const currentActive = document.querySelector('.track-item.active');
             if (currentActive) currentActive.classList.remove('active');
 
             currentIndex = index;
-            
-            // 新しい曲をハイライト
             document.getElementById(`track-${currentIndex}`).classList.add('active');
 
-            // オーディオソースの切り替えと再生
             audio.src = tracks[currentIndex].src;
             currentTitleDisplay.innerText = tracks[currentIndex].title;
             
+            // シークバーを一旦初期化
+            seekBar.value = 0;
+            currentTimeDisplay.innerText = "0:00";
+            
             audio.play()
                 .then(() => {
-                    playBtn.innerText = '⏸'; // 再生状態なら一時停止アイコンに
+                    playBtn.innerText = '⏸';
                 })
-                .catch(err => console.log("再生エラー（ユーザー操作が必要です）:", err));
+                .catch(err => console.log("再生エラー:", err));
         }
-
         // 再生・一時停止のトグル関数
         function togglePlay() {
             if (currentIndex === -1) {
