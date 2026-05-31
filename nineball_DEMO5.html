@@ -258,6 +258,8 @@
         </div>
     </div>
 
+    <button id="share-btn" class="control-btn">🔗 このページを友だちと共有</button>
+
     <script>
         const tracks = [
             { title: "1.真象生命", src: "真象生命_Ver1227.mp3" },
@@ -404,6 +406,37 @@ audio.addEventListener('ended', () => {
         window.onclick = function(event) {
             if (event.target == modal) { closeLyrics(); }
         }
+
+// ★追加：ネイティブ共有（Web Share API）の実装
+        const shareBtn = document.getElementById('share-btn');
+
+        shareBtn.addEventListener('click', async () => {
+            const shareData = {
+                title: 'Surplustar DEMO ALBUM "nine ball" 特設サイト',
+                text: '100%手作りの音が響く、Surplustarの特設サイト。このプレイヤーの体験、マジでやばいから聴いてみて！',
+                url: window.location.href // 現在のサイトのURLを自動取得
+            };
+
+            try {
+                // ブラウザがネイティブ共有に対応している場合（スマホなど）
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
+                    // PCブラウザなど未対応の場合は、URLをクリップボードに自動コピー（フォールバック）
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('リンクをコピーしました！お友達にシェアしてね！🔗');
+                }
+            } catch (err) {
+                // ユーザーが共有をキャンセルした場所以外のエラーハンドリング
+                if (err.name !== 'AbortError') {
+                    console.error('共有エラー:', err);
+                }
+            }
+        });
+
+
+
+        
     </script>
 
         <!-- 歌詞のデータ置き場（表示はされない） -->
