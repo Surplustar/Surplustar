@@ -365,10 +365,26 @@
         }
 
         // 曲が最後まで終わった時の連続再生処理
-        audio.addEventListener('ended', () => {
+audio.addEventListener('ended', () => {
             if (currentIndex < tracks.length - 1) {
+                // まだ次の曲があるなら連続再生を起動
                 playTrack(currentIndex + 1);
             } else {
+                // 最後の曲が終わったら、一番最初の曲（インデックス0）の頭に戻って停止
+                
+                // ① 現在（6曲目）のアクティブハイライトを消す
+                const currentActive = document.querySelector('.track-item.active');
+                if (currentActive) currentActive.classList.remove('active');
+
+                // ② インデックスを0（1曲目）に戻し、ハイライトを付与
+                currentIndex = 0;
+                document.getElementById(`track-${currentIndex}`).classList.add('active');
+
+                // ③ オーディオのソースとタイトル表示を1曲目に差し替え（再生はしない）
+                audio.src = tracks[currentIndex].src;
+                currentTitleDisplay.innerText = tracks[currentIndex].title;
+
+                // ④ プレイヤーのUIを初期状態（停止・ゼロ秒）に戻す
                 playBtn.innerText = '▶';
                 seekBar.value = 0;
                 currentTimeDisplay.innerText = "0:00";
