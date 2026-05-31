@@ -419,7 +419,6 @@ audio.addEventListener('ended', () => {
         shareBtn.addEventListener('click', async () => {
             const shareData = {
                 title: 'Surplustar DEMO ALBUM "nine ball" 特設サイト',
-                text: '100%手作りの音が響く、Surplustarの特設サイト。このプレイヤーの体験、マジでやばいから聴いてみて！',
                 url: window.location.href // 現在のサイトのURLを自動取得
             };
 
@@ -430,7 +429,7 @@ audio.addEventListener('ended', () => {
                 } else {
                     // PCブラウザなど未対応の場合は、URLをクリップボードに自動コピー（フォールバック）
                     await navigator.clipboard.writeText(window.location.href);
-                    alert('リンクをコピーしました！お友達にシェアしてね！🔗');
+                    alert('リンクをコピーしました！🔗');
                 }
             } catch (err) {
                 // ユーザーが共有をキャンセルした場所以外のエラーハンドリング
