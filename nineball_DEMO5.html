@@ -347,6 +347,46 @@
             }
         });
 
+// ーーー 追記：シークバー連動コアロジック ーーー
+        
+        // ① 音源のメタデータ（曲の長さ）が読み込まれたら総時間をセット
+        audio.addEventListener('loadedmetadata', () => {
+            seekBar.max = audio.duration;
+            durationDisplay.innerText = formatTime(audio.duration);
+        });
+
+        // ② 再生位置が更新されるたびにバーと現在時間を動かす
+        audio.addEventListener('timeupdate', () => {
+            seekBar.value = audio.currentTime;
+            currentTimeDisplay.innerText = formatTime(audio.currentTime);
+        });
+
+        // ③ ユーザーがシークバーを動かした時に再生位置を同期
+        function seekAudio() {
+            audio.currentTime = seekBar.value;
+        }
+
+        // ④ 秒数を「分:秒」に変換するフォーマット関数
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // 曲が最後まで終わった時の連続再生処理
+        audio.addEventListener('ended', () => {
+            if (currentIndex < tracks.length - 1) {
+                playTrack(currentIndex + 1);
+            } else {
+                playBtn.innerText = '▶';
+                seekBar.value = 0;
+                currentTimeDisplay.innerText = "0:00";
+            }
+        });
+
+        
+
         /* 歌詞モーダル用の既存ロジック */
         function openLyrics(title, text) {
             document.getElementById('modalTitle').innerText = title;
