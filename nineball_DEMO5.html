@@ -29,12 +29,10 @@
             transform-style: preserve-3d;
         }
 
-        /* クラス「flipped」がつくと回転する */
         .jacket-container.flipped .jacket-flipper {
             transform: rotateY(180deg);
         }
 
-        /* 表と裏の共通設定 */
         .front, .back {
             position: absolute;
             width: 100%;
@@ -55,7 +53,7 @@
             box-shadow: 0 12px 28px rgba(75, 163, 227, 0.15);
         }
 
-        /* ーーー 追加・修正：スカイブルー基調のグローバルプレイヤー ーーー */
+        /* グローバルプレイヤー */
         .player-controls {
             margin: 25px auto 15px auto;
             padding: 18px;
@@ -69,7 +67,7 @@
             justify-content: center;
             align-items: center;
             gap: 24px;
-            margin-bottom: 12px;
+            margin-bottom: 5px;
         }
         .control-btn {
             background: #ffffff;
@@ -90,7 +88,6 @@
             background: #e6f3fd;
             transform: scale(1.05);
         }
-        /* 再生ボタンだけ少し大きく目立たせる仕様 */
         .control-btn.play-main {
             font-size: 1.4rem;
             width: 56px;
@@ -101,8 +98,9 @@
         .control-btn.play-main:hover {
             background: #3a92d2;
             color: #ffffff;
-            
- /* ーーー 新設：スカイブルーのシークバーエリア ーーー */
+        }
+
+        /* ーーー 新設：スカイブルーのシークバーエリア ーーー */
         .progress-container {
             display: flex;
             align-items: center;
@@ -138,7 +136,7 @@
             font-size: 0.9rem;
         }
 
-        /* ーーー 修正：トラックリストスタイル ーーー */
+        /* トラックリストスタイル */
         .track-list { text-align: left; margin: 25px 0; background: #fdfdfd; border-radius: 12px; border: 1px solid #eef4f8; padding: 8px; }
         .track-item { 
             padding: 14px 12px; 
@@ -150,26 +148,21 @@
         .track-item:last-child { border-bottom: none; }
         .track-item:hover { background: #f0f8ff; }
         
-        /* 現在再生中の曲のハイライト状態 */
         .track-item.active {
             background: #e6f3fd;
             border-left: 4px solid #4ba3e3;
-            padding-left: 8px; /* 線の分だけパディングを調整 */
+            padding-left: 8px; 
         }
         
         .track-header { display: flex; justify-content: space-between; align-items: center; }
         .track-title { font-size: 0.95rem; font-weight: bold; color: #444; }
-        
-        /* 現在再生中の曲のタイトル色を変化させる */
         .track-item.active .track-title { color: #3a92d2; }
 
-        /* 歌詞ボタンのスタイル */
+        /* 歌詞ボタン・モーダル */
         .lyrics-btn { font-size: 0.75rem; font-weight: bold; background: #eef4f8; color: #4ba3e3; border: none; padding: 5px 12px; border-radius: 15px; cursor: pointer; transition: 0.3s; }
         .lyrics-btn:hover { background: #4ba3e3; color: white; }
-
-        /* モーダル（ポップアップ）のスタイル */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
-        .modal-content { background: white; width: 90%; max-width: 400px; padding: 20px; border-radius: 16px; position: relative; max-height: 80vh; overflow-y: auto; text-align: left; }
+        .modal-content { background: white; width: 90%; max-width: 400px; padding: 20px; border-radius: 166px; border-radius: 16px; position: relative; max-height: 80vh; overflow-y: auto; text-align: left; }
         .close-btn { position: sticky; top: 0; float: right; cursor: pointer; font-size: 1.2rem; color: #aaa; }
         .modal-lyrics { white-space: pre-wrap; line-height: 1.8; color: #555; margin-top: 20px; }
     </style>
@@ -181,7 +174,6 @@
         <h1>Surplustar DEMO Album<br>「nine ball」特設サイト</h1>
         <h4>↓タップでジャケットを裏返す↓</h4>
         
-        <!-- ジャケットエリア -->
         <div class="jacket-container" onclick="this.classList.toggle('flipped')">
             <div class="jacket-flipper">
                 <div class="front">
@@ -193,24 +185,27 @@
             </div>
         </div>
 
-        <!-- ーーー 新設：中央集権型プレイヤーコントローラー ーーー -->
         <div class="player-controls">
             <div class="control-btns">
                 <button id="prev-btn" class="control-btn" onclick="prevTrack()">⏮</button>
                 <button id="play-btn" class="control-btn play-main" onclick="togglePlay()">▶</button>
                 <button id="next-btn" class="control-btn" onclick="nextTrack()">⏭</button>
             </div>
+
+            <div class="progress-container">
+                <span id="current-time" class="time-display">0:00</span>
+                <input type="range" id="seek-bar" value="0" min="0" max="100" step="0.1" oninput="seekAudio()">
+                <span id="duration" class="time-display">0:00</span>
+            </div>
+
             <div class="now-playing">
                 NOW PLAYING:<span id="current-track-title">選択されていません</span>
             </div>
         </div>
 
-        <!-- 隠しオーディオ要素（JSで制御するため画面上は見えません） -->
         <audio id="main-audio"></audio>
 
-        <!-- 曲名リスト（個別audioプレイヤーは撤去し、洗練させました） -->
         <div class="track-list">
-            <!-- 1曲目 -->
             <div class="track-item" id="track-0" onclick="playTrack(0)">
                 <div class="track-header">
                     <div class="track-title">1.真象生命</div>
@@ -218,7 +213,6 @@
                 </div>
             </div>
             
-            <!-- 2曲目 -->
             <div class="track-item" id="track-1" onclick="playTrack(1)">
                 <div class="track-header">
                     <div class="track-title">2.Sober Dance</div>
@@ -226,7 +220,6 @@
                 </div>
             </div>
 
-            <!-- 3曲目 -->
             <div class="track-item" id="track-2" onclick="playTrack(2)">
                 <div class="track-header">
                     <div class="track-title">3.張りぼてのアルメリア</div>
@@ -234,7 +227,6 @@
                 </div>
             </div>
             
-            <!-- 4曲目 -->
             <div class="track-item" id="track-3" onclick="playTrack(3)">
                 <div class="track-header">
                     <div class="track-title">4.Stealth Truth</div>
@@ -242,7 +234,6 @@
                 </div>
             </div>
             
-            <!-- 5曲目 -->
             <div class="track-item" id="track-4" onclick="playTrack(4)">
                 <div class="track-header">
                     <div class="track-title">5.朝</div>
@@ -250,7 +241,6 @@
                 </div>
             </div>
 
-            <!-- 6曲目 -->
             <div class="track-item" id="track-5" onclick="playTrack(5)">
                 <div class="track-header">
                     <div class="track-title">6.些末</div>
@@ -260,7 +250,6 @@
         </div>
     </div>
 
-    <!-- モーダル本体 -->
     <div id="lyricsModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeLyrics()">&times;</span>
@@ -269,9 +258,7 @@
         </div>
     </div>
 
-    <!-- ーーー ロジック・スクリプト ーーー -->
     <script>
-        // 曲情報のマスター配列
         const tracks = [
             { title: "1.真象生命", src: "真象生命_Ver1227.mp3" },
             { title: "2.Sober Dance", src: "Sober Dance.mp3" },
@@ -281,12 +268,12 @@
             { title: "6.些末", src: "些末.mp3" }
         ];
 
-        let currentIndex = -1; // 現在再生中のインデックス（初期値は未選択）
+        let currentIndex = -1; 
         const audio = document.getElementById('main-audio');
         const playBtn = document.getElementById('play-btn');
         const currentTitleDisplay = document.getElementById('current-track-title');
-
-     // 追記：シークバー用の要素取得
+        
+        // 追記：シークバー用の要素取得
         const seekBar = document.getElementById('seek-bar');
         const currentTimeDisplay = document.getElementById('current-time');
         const durationDisplay = document.getElementById('duration');
@@ -313,14 +300,12 @@
                 })
                 .catch(err => console.log("再生エラー:", err));
         }
-        // 再生・一時停止のトグル関数
+
         function togglePlay() {
             if (currentIndex === -1) {
-                // まだ曲が選択されていない状態で再生が押されたら1曲目を回す
                 playTrack(0);
                 return;
             }
-
             if (audio.paused) {
                 audio.play();
                 playBtn.innerText = '⏸';
@@ -330,14 +315,8 @@
             }
         }
 
-        // 早送り（次の曲へ）
         function nextTrack() {
-            if (currentIndex === -1) {
-                playTrack(0);
-                return;
-            }
-            
-            // 最後の曲の場合は、最初の曲に戻る仕様（手動操作時の利便性バッファ）
+            if (currentIndex === -1) { playTrack(0); return; }
             if (currentIndex < tracks.length - 1) {
                 playTrack(currentIndex + 1);
             } else {
@@ -345,15 +324,11 @@
             }
         }
 
-        // 巻き戻し（前の曲へ / 曲の頭へ戻す）
         function prevTrack() {
             if (currentIndex === -1) return;
-
-            // 音楽プレイヤーの標準UX：2秒以上再生されていたらその曲の頭に戻す
             if (audio.currentTime > 2) {
                 audio.currentTime = 0;
             } else {
-                // 2秒未満なら前の曲へ。最初の曲なら最後の曲へループ
                 if (currentIndex > 0) {
                     playTrack(currentIndex - 1);
                 } else {
@@ -362,19 +337,7 @@
             }
         }
 
-        // ★コアロジック：曲が最後まで終わった時のイベントリスナー
-        audio.addEventListener('ended', () => {
-            if (currentIndex < tracks.length - 1) {
-                // まだ次の曲があるなら連続再生を起動
-                playTrack(currentIndex + 1);
-            } else {
-                // 最後の曲が終わったら停止して再生ボタンを「▶」に戻す（連続再生の終端）
-                playBtn.innerText = '▶';
-                // 任意：曲名表示は残したまま停止状態にする
-            }
-        });
-
-// ーーー 追記：シークバー連動コアロジック ーーー
+        // ーーー 追記：シークバー連動コアロジック ーーー
         
         // ① 音源のメタデータ（曲の長さ）が読み込まれたら総時間をセット
         audio.addEventListener('loadedmetadata', () => {
@@ -412,9 +375,7 @@
             }
         });
 
-        
-
-        /* 歌詞モーダル用の既存ロジック */
+        /* 歌詞モーダルロジック */
         function openLyrics(title, text) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalLyrics').innerText = text; 
@@ -423,16 +384,12 @@
         function closeLyrics() {
             document.getElementById('lyricsModal').style.display = 'none';
         }
-
         const modal = document.getElementById('lyricsModal');
         window.onclick = function(event) {
-            if (event.target == modal) {
-                closeLyrics();
-            }
+            if (event.target == modal) { closeLyrics(); }
         }
     </script>
 
-    <!-- 歌詞のデータ置き場（非表示） -->
         <!-- 歌詞のデータ置き場（表示はされない） -->
     <div id="lyrics_SINSYO" style="display: none;">
 壊れ朽ち果てる生命に　
@@ -657,6 +614,5 @@ LD50に満たない
     </div>
 
     <p>Thank you for visiting.<br>©2026 Studi-tory Records</p>
-    
 </body>
 </html>
