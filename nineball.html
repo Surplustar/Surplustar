@@ -256,6 +256,16 @@
         </div>
     </div>
 
+    
+            <div class="track-item" id="track-5" onclick="playTrack(5)">
+                <div class="track-header">
+                    <div class="track-title">7.Amber</div>
+                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('Amber/Music＆Lyrics:ささ', document.getElementById('lyrics_AMBER').innerText)">歌詞を見る</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="lyricsModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeLyrics()">&times;</span>
@@ -274,6 +284,7 @@
             { title: "4.Stealth Truth", src: "Stealth Truth.mp3" },
             { title: "5.朝", src: "朝.mp3" },
             { title: "6.些末", src: "些末.mp3" }
+            { title: "7.Amber", src: "Amber_DEMO0720.mp3" }
         ];
 
         let currentIndex = -1; 
@@ -667,6 +678,30 @@ LD50に満たない
 笑って生きていくだけ
     </div>
 
-    <p>Thank you for listening.<br>2026.5.31<br>©Studi-tory Records</p>
+    <div id="lyrics_AMBER" style="display: none;">
+繰り返す夢と　
+変わらない世界
+雲を掴むような幸せ
+
+つながりは儚く
+さみしさは尽きぬが
+それでも笑顔は美しい
+
+痛みは消えないまま
+日々はそっけなくすぎる
+それでも優しさは綺麗だ
+
+甘い煙と
+溶けていく氷の中で
+やわらかな光
+見ていたいだけ
+
+忘れたくない
+かすかな思い出たち
+消えないで
+    </div>
+
+
+    <p>Thank you for listening.<br>2026.7.20<br>©Studi-tory Records</p>
 </body>
 </html>
