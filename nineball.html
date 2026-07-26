@@ -214,50 +214,64 @@
         <div class="track-list">
             <div class="track-item" id="track-0" onclick="playTrack(0)">
                 <div class="track-header">
-                    <div class="track-title">1.真象生命</div>
-                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('真象生命/Music＆Lyrics:ささ', document.getElementById('lyrics_SINSYO').innerText)">歌詞を見る</button>
+                    <div class="track-title">1.張りぼてのアルメリア</div>
+                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('張りぼてのアルメリア/Music＆Lyrics:たら', document.getElementById('lyrics_ARMERIA').innerText)">歌詞を見る</button>
                 </div>
             </div>
             
             <div class="track-item" id="track-1" onclick="playTrack(1)">
                 <div class="track-header">
-                    <div class="track-title">2.Sober Dance</div>
-                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('Sober Dance/Music＆Lyrics:ささ', document.getElementById('lyrics_SOBER').innerText)">歌詞を見る</button>
+                    <div class="track-title">2.真象生命</div>
+                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('真象生命/Music＆Lyrics:ささ', document.getElementById('lyrics_SINSYO').innerText)">歌詞を見る</button>
                 </div>
             </div>
 
             <div class="track-item" id="track-2" onclick="playTrack(2)">
                 <div class="track-header">
-                    <div class="track-title">3.張りぼてのアルメリア</div>
-                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('張りぼてのアルメリア/Music＆Lyrics:たら', document.getElementById('lyrics_ARMERIA').innerText)">歌詞を見る</button>
+                    <div class="track-title">3.Sober Dance</div>
+                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('Sober Dance/Music＆Lyrics:ささ', document.getElementById('lyrics_SOBER').innerText)">歌詞を見る</button>
                 </div>
             </div>
             
             <div class="track-item" id="track-3" onclick="playTrack(3)">
                 <div class="track-header">
-                    <div class="track-title">4.Stealth Truth</div>
-                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('Stealth Truth/Music＆Lyrics:ささ', document.getElementById('lyrics_STEALTH').innerText)">歌詞を見る</button>
+                    <div class="track-title">4.朝</div>
+                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('朝/Music＆Lyrics:ささ', document.getElementById('lyrics_ASA').innerText)">歌詞を見る</button>
                 </div>
             </div>
             
             <div class="track-item" id="track-4" onclick="playTrack(4)">
                 <div class="track-header">
-                    <div class="track-title">5.朝</div>
-                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('朝/Music＆Lyrics:ささ', document.getElementById('lyrics_ASA').innerText)">歌詞を見る</button>
+                    <div class="track-title">5.Stealth Truth</div>
+                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('Stealth Truth/Music＆Lyrics:ささ', document.getElementById('lyrics_STEALTH').innerText)">歌詞を見る</button>
                 </div>
             </div>
 
             <div class="track-item" id="track-5" onclick="playTrack(5)">
                 <div class="track-header">
-                    <div class="track-title">6.些末</div>
-                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('些末/Music＆Lyrics:ささ', document.getElementById('lyrics_SAMATSU').innerText)">歌詞を見る</button>
+                    <div class="track-title">6.LOOP</div>
+                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('LOOP/Music＆Lyrics:ささ', document.getElementById('lyrics_LOOP').innerText)">歌詞を見る</button>
                 </div>
             </div>
             
             <div class="track-item" id="track-6" onclick="playTrack(6)">
                 <div class="track-header">
-                    <div class="track-title">7.Amber</div>
+                    <div class="track-title">7.些末</div>
+                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('Amber/Music＆Lyrics:ささ', document.getElementById('lyrics_SAMATSU').innerText)">歌詞を見る</button>
+                </div>
+            </div>
+
+            <div class="track-item" id="track-7" onclick="playTrack(7)">
+                <div class="track-header">
+                    <div class="track-title">8.Amber</div>
                     <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('Amber/Music＆Lyrics:ささ', document.getElementById('lyrics_AMBER').innerText)">歌詞を見る</button>
+                </div>
+            </div>
+            
+            <div class="track-item" id="track-8" onclick="playTrack(8)">
+                <div class="track-header">
+                    <div class="track-title">9.美しい音楽が美しく在って</div>
+                    <button class="lyrics-btn" onclick="event.stopPropagation(); openLyrics('美しい音楽が美しく在って/Music＆Lyrics:ささ', document.getElementById('lyrics_BEAUTIFUL').innerText)">歌詞を見る</button>
                 </div>
             </div>
             
@@ -276,13 +290,15 @@
 
     <script>
         const tracks = [
-            { title: "1.真象生命", src: "真象生命_Ver1227.mp3" },
-            { title: "2.Sober Dance", src: "Sober Dance.mp3" },
-            { title: "3.張りぼてのアルメリア", src: "張りぼてのアルメリア_MIX0430.mp3" },
-            { title: "4.Stealth Truth", src: "Stealth Truth.mp3" },
-            { title: "5.朝", src: "朝.mp3" },
-            { title: "6.些末", src: "些末.mp3" },
-            { title: "7.Amber", src: "Amber_DEMO0722.mp3" }
+            { title: "1.張りぼてのアルメリア", src: "張りぼてのアルメリア_MIX0430.mp3" },
+            { title: "2.真象生命", src: "真象生命_Ver1227.mp3" },
+            { title: "3.Sober Dance", src: "Sober Dance.mp3" },
+            { title: "4.朝", src: "朝.mp3" },
+            { title: "5.Stealth Truth", src: "Stealth Truth.mp3" },
+            { title: "6.LOOP", src: "LOOP.mp3" },
+            { title: "7.些末", src: "些末.mp3" }
+            { title: "8.Amber", src: "Amber_DEMO0726.mp3" },
+            { title: "9.美しい音楽が美しく在って", src: "美しい音楽が美しく在って.mp3" }
         ];
 
         let currentIndex = -1; 
@@ -698,8 +714,40 @@ LD50に満たない
 かすかな思い出たち
 消えないで
     </div>
+    
+<div id="lyrics_LOOP" style="display: none;">
+手癖のメロディ　繰り返し歌った
+陳腐な言葉　繰り返し綴った
 
+ありふれた思考　繰り返し巡って
+昨日と同じ　今日を生きてしまうの
 
-    <p>Thank you for listening.<br>2026.7.20<br>©Studi-tory Records</p>
+夢から覚めて　怖いほど現実だ
+所詮まぬかれない　生命が立ちはだかる
+
+手癖のメロディ　繰り返し歌った
+陳腐な言葉　繰り返し綴った
+
+ありふれた思考　繰り返し巡って
+昨日と同じ　今日を生きるのさ
+</div>
+
+<div id="lyrics_BEAUTIFUL" style="display: none;">
+美しい音楽が美しく在って
+夏の夜風　瓶ビール開けるような
+ありふれた情景
+
+美しい音楽が美しく在って
+特別なものなんてどこにもない
+風なびき　海ゆらぎ　佇むだけ
+帰り道　月明かりが照らす
+
+美しい音楽が美しく在って
+こうやって過ぎゆく夏の日々を
+僕らはいちばん愛している
+おやすみなさい　またあした
+</div>
+
+    <p>Thank you for listening.<br>2026.7.26<br>©Studi-tory Records</p>
 </body>
 </html>
