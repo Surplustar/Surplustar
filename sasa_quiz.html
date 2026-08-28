@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ささに関するクイズ！</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f4f7f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .quiz-card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+    }
+    h2 {
+      color: #333;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn {
+      background-color: #ffffff;
+      border: 2px solid #e0e0e0;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background-color: #4A90E2;
+      color: #ffffff;
+      border-color: #4A90E2;
+    }
+    .score-title {
+      font-size: 1.5rem;
+      color: #333;
+    }
+    .score-num {
+      font-size: 2.5rem;
+      color: #4A90E2;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    .retry-btn {
+      background-color: #4A90E2;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="quiz-card" id="quizContainer">
+  <h2 id="question">問題文がここに入ります</h2>
+  <div class="options" id="options"></div>
+</div>
+
+<script>
+  // ──【問題データの編集場所】──────────────────────────────
+  const quizData = [
+    {
+      question: "Q1. 私の1番好きな食べ物はどれ？",
+      options: ["ラーメン", "寿司", "ハンバーグ", "カレー"],
+      answer: 1 // 正解の番号（0が1番目、1が2番目...）
+    },
+    {
+      question: "Q2. 休日に一番よくやる過ごし方は？",
+      options: ["ゲーム", "映画鑑賞", "寝る", "買い物"],
+      answer: 0
+    },
+    {
+      question: "Q3. 行ってみたい旅行先はどこ？",
+      options: ["北海道", "沖縄", "京都", "海外"],
+      answer: 3
+    }
+  ];
+  // ──────────────────────────────────────────────────
+
+  let currentStep = 0;
+  let score = 0;
+
+  const questionEl = document.getElementById("question");
+  const optionsEl = document.getElementById("options");
+  const containerEl = document.getElementById("quizContainer");
+
+  function loadQuiz() {
+    const currentQuiz = quizData[currentStep];
+    questionEl.textContent = currentQuiz.question;
+    optionsEl.innerHTML = "";
+
+    currentQuiz.options.forEach((opt, index) => {
+      const button = document.createElement("button");
+      button.classList.add("btn");
+      button.textContent = opt;
+      button.onclick = () => checkAnswer(index);
+      optionsEl.appendChild(button);
+    });
+  }
+
+  function checkAnswer(selectedIndex) {
+    if (selectedIndex === quizData[currentStep].answer) {
+      score++;
+    }
+    currentStep++;
+
+    if (currentStep < quizData.length) {
+      loadQuiz();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    containerEl.innerHTML = `
+      <div class="score-title">結果発表！</div>
+      <div class="score-num">${quizData.length}問中 ${score}問 正解！</div>
+      <p>${getResultMessage(score, quizData.length)}</p>
+      <button class="retry-btn" onclick="location.reload()">もう一度やる</button>
+    `;
+  }
+
+  function getResultMessage(score, total) {
+    if (score === total) return "すごい！全問正解！私のこと知り尽くしてるね！";
+    if (score >= total / 2) return "惜しい！なかなか理解度高め！";
+    return "まだまだこれから！もっと私と話そう！";
+  }
+
+  loadQuiz();
+</script>
+
+</body>
+</html>
